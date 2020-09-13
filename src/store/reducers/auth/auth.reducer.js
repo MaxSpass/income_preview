@@ -1,17 +1,24 @@
 import {postUser, postLogin, getLogin} from '../../../api/index';
 
-const INITIAL_STATE = ()=>({
-    currentUser: null,
-    isAuth: false,
-    error: null,
-    isLoading: false,
-});
+const INITIAL_STATE = ()=> {
+    // const token = localStorage.getItem("token");
+    return {
+        currentUser: null,
+        isAuth: !!localStorage.getItem("token"),
+        error: null,
+        isLoading: false,
+    }
+};
 
 const initialState = INITIAL_STATE();
 
 const FETCH_AUTH_REQUEST = "FETCH_AUTH_REQUEST";
 const FETCH_AUTH_SUCCESS = "FETCH_AUTH_SUCCESS";
 const FETCH_AUTH_ERROR = "FETCH_AUTH_ERROR";
+
+const SET_TOKEN = "SET_TOKEN";
+const REMOVE_TOKEN = "REMOVE_TOKEN";
+
 const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 const loginRequestAC = payload => ({
@@ -29,16 +36,44 @@ const loginErrorAC = payload => ({
     payload,
 });
 
+const logoutAC = payload => ({
+   type: AUTH_LOGOUT,
+   payload,
+});
+
+const setTokenAC = payload => ({
+    type: SET_TOKEN,
+    payload,
+});
+
+const removeTokenAC = payload => ({
+    type: REMOVE_TOKEN,
+    payload,
+});
+
+const setToken = obj => {
+    localStorage.setItem("token", obj.token);
+    localStorage.setItem('token_exp', obj.exp * 1000);
+};
+
+const removeToken = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('token_exp');
+};
+
 export const userPostThunk = props => dispatch => {
     dispatch(loginRequestAC(true));
     return postUser(props)
         .then(({data,error}) => {
             if (error) {
-                //@TODO Handle error
-                console.log('@TODO Handle error')
+                dispatch(removeTokenAC())
+                dispatch(logoutAC())
             }
             else {
-                localStorage.setItem("token", data.token);
+                dispatch(setTokenAC({
+                    token: data.token,
+                    exp: data.user.exp,
+                }))
                 dispatch(loginSuccessAC(data.user))
             }
         })
@@ -48,14 +83,23 @@ export const userPostThunk = props => dispatch => {
 export const userLoginThunk = props => dispatch => {
     dispatch(loginRequestAC(true));
     return postLogin(props)
-        .then(({data,error})=>{
-            if (error) {
-                //@TODO Handle error
-                console.log('@TODO Handle error')
+        .then(res=>{
+            const token = res.data.token;
+            const user = res.data.user;
+            const exp = user.exp;
+            if (res.error) {
+                dispatch(removeTokenAC())
+                dispatch(logoutAC())
             }
             else {
-                localStorage.setItem("token", data.token);
-                dispatch(loginSuccessAC(data.user))
+                // localStorage.setItem("token", data.token);
+                dispatch(setTokenAC({
+                    token,
+                    exp,
+                }))
+                dispatch(loginSuccessAC({
+                    user,
+                }))
             }
         })
         .catch(err=>loginErrorAC(err))
@@ -69,18 +113,25 @@ export const userProfileThunk = props => dispatch => {
             .then((res)=>{
                 const {user,error} = res;
                 if (error) {
-                    //@TODO Handle error
-                    localStorage.removeItem("token")
+                    dispatch(removeTokenAC())
+                    dispatch(logoutAC())
                 }
                 else {
                     if(user) {
-                        localStorage.setItem("token", token);
-                        dispatch(loginSuccessAC(user))
+                        console.log('user',user);
+                        dispatch(loginSuccessAC({
+                            user,
+                        }))
                     }
                 }
             })
             .catch(err=>loginErrorAC(err))
     }
+};
+
+export const userLogoutThunk = props => dispatch => {
+    dispatch(removeTokenAC());
+    dispatch(logoutAC());
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -109,8 +160,16 @@ export default (state = initialState, {type, payload}) => {
             };
             break;
         case AUTH_LOGOUT:
-            localStorage.removeItem('token');
             state = INITIAL_STATE();
+            break;
+        case SET_TOKEN:
+            setToken({
+                token: payload.token,
+                exp: payload.exp,
+            })
+            break;
+        case REMOVE_TOKEN:
+            removeToken();
             break;
         default:
             break;

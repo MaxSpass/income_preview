@@ -215,7 +215,10 @@ export const postLogin = params => {
 
 export const getLogin = params => {
     return authorizedGetRequest('/auth/profile')(params)
-        .then(res=>res.data)
+        .then(res=>{
+            console.log('res.data.user.exp',res.data.user.exp)
+            return res.data;
+        })
         .catch(err=>err);
 };
 

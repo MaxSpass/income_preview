@@ -86,7 +86,7 @@ class AuthModule extends InternalValidateModule {
     constructor(props) {
         super(props);
         this.pass_signature = props.pass_signature || "some_default_signature";
-        this.token_expiration = props.token_expiration || "16h"; // "15m", "5s", "6h"
+        this.token_expiration = props.token_expiration || "16h";
 
         this.controller = new AuthController();
     }
@@ -258,7 +258,7 @@ class AuthModule extends InternalValidateModule {
 
 const auth = new AuthModule({
     pass_signature: 'vn4237b237c12bn893cpbn120p',
-    token_expiration: "16h",
+    token_expiration: "1h", // "15m", "5s", "6h", "16h"
 });
 
 class ApiAuth {

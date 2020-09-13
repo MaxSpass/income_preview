@@ -26,7 +26,7 @@ function App(props) {
     const wrapperStyle = "greenAndBlue"; // miaka, anamnisar, greenAndBlue, miamiDolphins, slightOceanView, dull
 
     React.useEffect(() => {
-            props.getProfile();
+        props.getProfile();
     },// eslint-disable-next-line react-hooks/exhaustive-deps
     []);
 

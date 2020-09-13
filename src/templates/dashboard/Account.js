@@ -32,6 +32,7 @@ import ReportsBox from './containers/Reports';
 
 // import useStyles from '../../classes/index';
 import {makeStyles} from "@material-ui/core/styles";
+import {userLogoutThunk} from "../../store/reducers/auth/auth.reducer";
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -125,11 +126,28 @@ function Copyright() {
     );
 }
 
+//@TODO It's should be in the another place
+const tokenChecking = callback => {
+    let interval;
+    interval = setInterval(()=>{
+        const token_exp = localStorage.getItem("token_exp");
+        const date_now = Date.now();
+        console.log("TOKEN VALIDATION: ", !(token_exp && token_exp <= date_now))
+        if(token_exp && token_exp <= date_now) {
+            clearInterval(interval);
+            callback();
+        }
+    }, 1000);
+}
 
 function Account(props) {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(true);
+
+    React.useEffect(()=>{
+        tokenChecking(props.logout);
+    }, []);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -201,6 +219,8 @@ function Account(props) {
 //     isAuth: state.auth.isAuth
 // });
 
+const mapDispatchToProps = dispatch => ({
+    logout: ()=> dispatch(userLogoutThunk()),
+});
 
-
-export default connect(null, null)(Account);
+export default connect(null, mapDispatchToProps)(Account);
