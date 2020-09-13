@@ -71,48 +71,6 @@ export default function NavBar() {
             text: 'Reports',
             icon: <BarChartIcon/>
         },
-        {
-            to: '/users',
-            text: 'Users',
-            disable: true,
-            icon: <PeopleIcon/>
-        },
-        {
-            to: '/orders',
-            text: 'Orders',
-            disable: true,
-            icon: <ShoppingCartIcon/>
-        },
-        {
-            to: '/integrations',
-            text: 'Integrations',
-            disable: true,
-            icon: <LayersIcon/>
-        },
-    ];
-
-    const menus_bottom = [
-        {
-            label: 'Available reports',
-        },
-        {
-            to: '/currect-month',
-            text: 'Current month',
-            disable: true,
-            icon: <AssignmentIcon/>
-        },
-        {
-            to: '/last-quarter',
-            text: 'Last quarter',
-            disable: true,
-            icon: <AssignmentIcon/>
-        },
-        {
-            to: '/year-end-sale',
-            text: 'Year-end sale',
-            disable: true,
-            icon: <AssignmentIcon/>
-        },
     ];
 
   return (
@@ -122,14 +80,6 @@ export default function NavBar() {
               menus_top.length
                 ? ListMenu(menus_top)
                 : ''
-          }
-
-          <Divider />
-
-          {
-              menus_bottom.length
-                  ? ListMenu(menus_bottom)
-                  : ''
           }
 
       </React.Fragment>
