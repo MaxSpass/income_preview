@@ -23,8 +23,6 @@ import {
 } from '@material-ui/icons';
 
 import NavBar from '../../components/nav/NavBar';
-// import PrivateRoute from '../../components/auth/PrivateRoute';
-// import TableList from './components/Table';
 
 import DashboardBox from './containers/Dashboard';
 import UsersBox from './containers/Users';

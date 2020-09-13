@@ -9,7 +9,6 @@ import {thunks as tagThunks} from '../../../store/reducers/entities/tag.reducer'
 import {thunks as genreThunks} from '../../../store/reducers/entities/genre.reducer';
 import {thunks as userThunks} from '../../../store/reducers/entities/user.reducer';
 import {thunks as sourceThunks} from '../../../store/reducers/entities/source.reducer';
-// import {thunks as currencyThunks} from '../../../store/reducers/entities/currency.reducer';
 
 import {createTableColumns} from "../../../helpers";
 
@@ -32,10 +31,6 @@ class Dashboard extends Component {
         return this.props[methodName];
     }
     render() {
-        // onRowAdd - args: (newData);
-        // onRowUpdate - args: (newData, oldData)
-        // onRowDelete - args: (oldData);
-
         return(
             <React.Fragment>
                 <Grid container spacing={3}>

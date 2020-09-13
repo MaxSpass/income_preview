@@ -94,7 +94,6 @@ function InnerForm({ handleSubmit, form, submitting, pristine, values }) {
                     variant="contained"
                     size="large"
                     color="primary"
-                    // endIcon={<Icon>send</Icon>}
                 >
                     Submit
                 </Button>
@@ -106,82 +105,6 @@ function InnerForm({ handleSubmit, form, submitting, pristine, values }) {
                 >
                     Login
                 </Button>
-
-                {/*<Field name="password">*/}
-                {/*    {({ input, meta }) => (*/}
-                {/*        <FormControl error={meta.error && meta.touched} variant="outlined" className="w-100 mt-4 mt-2">*/}
-                {/*            <InputLabel className="mt-0">Password</InputLabel>*/}
-                {/*            <OutlinedInput*/}
-                {/*                type={value.showPassword ? 'text' : 'password'}*/}
-                {/*                value={value.password}*/}
-                {/*                onChange={handleChange('password')}*/}
-                {/*                endAdornment={*/}
-                {/*                    <InputAdornment position="end">*/}
-                {/*                        <IconButton*/}
-                {/*                            aria-label="toggle password visibility"*/}
-                {/*                            onClick={handleClickShowPassword}*/}
-                {/*                            onMouseDown={handleMouseDownPassword}*/}
-                {/*                            edge="end"*/}
-                {/*                        >*/}
-                {/*                            {value.showPassword ? <Visibility /> : <VisibilityOff />}*/}
-                {/*                        </IconButton>*/}
-                {/*                    </InputAdornment>*/}
-                {/*                }*/}
-                {/*            {...input}*/}
-                {/*            />*/}
-                {/*            <FormHelperText>{meta.error && meta.touched && <span>{meta.error}</span>}</FormHelperText>*/}
-                {/*        </FormControl>*/}
-                {/*    )}*/}
-                {/*</Field>*/}
-
-                {/*<TextField*/}
-                {/*    className="d-block mb-3"*/}
-                {/*    fullWidth={true}*/}
-                {/*    id="standard-basic"*/}
-                {/*    label="Password"*/}
-                {/*    name="password"*/}
-                {/*/>*/}
-
-                {/*<Field name="username">*/}
-                {/*    {({ input, meta }) => (*/}
-                {/*        <div>*/}
-                {/*            <label>Username</label>*/}
-                {/*            <input {...input} type="text" placeholder="Username" />*/}
-                {/*            {meta.error && meta.touched && <span>{meta.error}</span>}*/}
-                {/*        </div>*/}
-                {/*    )}*/}
-                {/*</Field>*/}
-                {/*<Field name="password">*/}
-                {/*    {({ input, meta }) => (*/}
-                {/*        <div>*/}
-                {/*            <label>Password</label>*/}
-                {/*            <input {...input} type="password" placeholder="Password" />*/}
-                {/*            {meta.error && meta.touched && <span>{meta.error}</span>}*/}
-                {/*        </div>*/}
-                {/*    )}*/}
-                {/*</Field>*/}
-                {/*<Field name="confirm">*/}
-                {/*    {({ input, meta }) => (*/}
-                {/*        <div>*/}
-                {/*            <label>Confirm</label>*/}
-                {/*            <input {...input} type="password" placeholder="Confirm" />*/}
-                {/*            {meta.error && meta.touched && <span>{meta.error}</span>}*/}
-                {/*        </div>*/}
-                {/*    )}*/}
-                {/*</Field>*/}
-                {/*<div className="buttons">*/}
-                {/*    <button type="submit" disabled={submitting}>*/}
-                {/*        Submit*/}
-                {/*    </button>*/}
-                {/*    <button*/}
-                {/*        type="button"*/}
-                {/*        onClick={form.reset}*/}
-                {/*        disabled={submitting || pristine}*/}
-                {/*    >*/}
-                {/*        Reset*/}
-                {/*    </button>*/}
-                {/*</div>*/}
-                {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
             </form>
         </React.Fragment>
     )
@@ -205,11 +128,6 @@ class RegistrationForm extends Component {
                     if (!fields.password) {
                         errors.password = 'Required'
                     }
-                    // if (!values.confirm) {
-                    //     errors.confirm = 'Required'
-                    // } else if (values.confirm !== values.password) {
-                    //     errors.confirm = 'Must match'
-                    // }
                     return errors
                 }}
                 render={InnerForm}

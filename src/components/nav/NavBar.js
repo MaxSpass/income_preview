@@ -1,14 +1,9 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-// import {makeStyles} from "@material-ui/core/styles";
 import useStyles from '../../classes';
 
 import {
-    Assignment as AssignmentIcon,
-    Layers as LayersIcon,
     BarChart as BarChartIcon,
-    People as PeopleIcon,
-    ShoppingCart as ShoppingCartIcon,
     Dashboard as DashboardIcon,
 } from '@material-ui/icons';
 
@@ -17,19 +12,8 @@ import {
     ListItemIcon,
     ListItemText,
     ListSubheader,
-    Divider,
     List,
 } from "@material-ui/core";
-
-
-// const useStyles = makeStyles((theme) =>({
-//     navActive: {
-//         svg: {
-//             fill: 'red',
-//         }
-//     }
-// });
-
 
 //@TODO Pass needed class for changing link color
 function ListMenu(menus) {

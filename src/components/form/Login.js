@@ -11,27 +11,10 @@ import {
     OutlinedInput,
     Divider,
     FormHelperText,
-    // TextField,
-    // Card,
-    // InputAdornment,
-    // IconButton,
-    // Input,
-    // Icon,
 } from '@material-ui/core';
 
-// import {
-//     Visibility,
-//     VisibilityOff,
-// } from '@material-ui/icons';
 
-function InnerForm({ handleSubmit, form, submitting, pristine, values }) {
-    // const [value, setValues] = React.useState({
-    //     amount: '',
-    //     password: '',
-    //     weight: '',
-    //     weightRange: '',
-    //     showPassword: false,
-    // });
+function InnerForm({ handleSubmit }) {
 
     return(
         <React.Fragment>
@@ -115,11 +98,6 @@ class LoginForm extends Component {
                     if (!fields.password) {
                         errors.password = "Password is Required"
                     }
-                    // if (!values.confirm) {
-                    //     errors.confirm = 'Required'
-                    // } else if (values.confirm !== values.password) {
-                    //     errors.confirm = 'Must match'
-                    // }
                     return errors
                 }}
                 render={InnerForm}

@@ -2,19 +2,6 @@ import React from 'react';
 import TableMaterial from 'material-table'; // https://material-table.com/#/docs/all-props
 import {pick, isFunction} from 'lodash';
 
-// const example = {
-//     columns: [
-//         {
-//             title: 'Birth Place',
-//             field: 'birthCity',
-//             lookup: {
-//                 34: 'İstanbul',
-//                 63: 'Şanlıurfa'
-//             },
-//         },
-//     ]
-// };
-
 export default function MaterialTable(props) {
     const data = props ? props.data : {};
     const [state, setState] = React.useState(data);
