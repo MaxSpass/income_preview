@@ -71,7 +71,7 @@ function InnerForm({ handleSubmit, form, submitting, pristine, values }) {
                     {({ input, meta }) => (
                         <FormControl required error={meta.error && meta.touched} variant="outlined" className="w-100 mt-4 mt-2">
                             <InputLabel htmlFor="component-outlined">Password</InputLabel>
-                            <OutlinedInput label="password" {...input} />
+                            <OutlinedInput type="password" label="password" {...input} />
                             <FormHelperText>{meta.error && meta.touched && <span>{meta.error}</span>}</FormHelperText>
                         </FormControl>
                     )}
@@ -81,7 +81,7 @@ function InnerForm({ handleSubmit, form, submitting, pristine, values }) {
                     {({ input, meta }) => (
                         <FormControl required error={meta.error && meta.touched} variant="outlined" className="w-100 mt-4 mt-2">
                             <InputLabel htmlFor="component-outlined">Password confirmed</InputLabel>
-                            <OutlinedInput label="password_confirm" {...input} />
+                            <OutlinedInput type="password" label="password_confirm" {...input} />
                             <FormHelperText>{meta.error && meta.touched && <span>{meta.error}</span>}</FormHelperText>
                         </FormControl>
                     )}

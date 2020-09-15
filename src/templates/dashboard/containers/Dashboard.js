@@ -42,7 +42,7 @@ class Dashboard extends Component {
                             onRowDelete={this.asyncAnyAction('remove', 'incomes')}
                         />
                     </Grid>
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <MaterialTable
                             data={this.props.sourcesTableData}
                             onRowAdd={this.asyncAnyAction('post', 'sources')}
@@ -50,7 +50,7 @@ class Dashboard extends Component {
                             onRowDelete={this.asyncAnyAction('remove', 'sources')}
                         />
                     </Grid>
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <MaterialTable
                             data={this.props.tagsTableData}
                             onRowAdd={this.asyncAnyAction('post', 'tags')}
@@ -58,20 +58,12 @@ class Dashboard extends Component {
                             onRowDelete={this.asyncAnyAction('remove', 'tags')}
                         />
                     </Grid>
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <MaterialTable
                             data={this.props.genresTableData}
                             onRowAdd={this.asyncAnyAction('post', 'genres')}
                             onRowUpdate={this.asyncAnyAction('update', 'genres')}
                             onRowDelete={this.asyncAnyAction('remove', 'genres')}
-                        />
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={3}>
-                        <MaterialTable
-                            data={this.props.usersTableData}
-                            onRowAdd={this.asyncAnyAction('post', 'users')}
-                            onRowUpdate={this.asyncAnyAction('update', 'users')}
-                            onRowDelete={this.asyncAnyAction('remove', 'users')}
                         />
                     </Grid>
                 </Grid>
@@ -108,17 +100,6 @@ const mapStateToProps = (state) => {
                 columns,
                 title,
                 isLoading: state.genres.isLoading,
-            }
-        },
-
-        usersTableData: ()=>{
-            const columns = createTableColumns(['Username']);
-            const title = 'All Users';
-            return {
-                data: state.users.items,
-                columns,
-                title,
-                isLoading: state.users.isLoading,
             }
         },
 
